@@ -1,15 +1,21 @@
 import web
 
 from routes.index import Index
+from routes.settings import Settings
 import time
+from controller.doorautomater import DoorAutomater
+import controller.settings as settings
 
 PossibleUrls = (
                 '/favicon.ico', 'Favicon',
+                '/api/settings', 'Settings',
+                '/api/settings/(.*)/(.*)', 'Settings',
+                '/api/settings/(.*)', 'Settings',
                 '/(.*)', 'Index',
                 '/', 'Index'
 )
 
-port_num = 8080
+port_num = settings.configuration.getint('Server','port')
 
 def cleanup():
     print ('cleaning up before exit..')
@@ -23,6 +29,7 @@ if __name__ == "__main__":
     Server = web.application(PossibleUrls,globals())
 
     try:
+        print DoorAutomater().start()
         web.httpserver.runsimple(Server.wsgifunc(), ("0.0.0.0", port_num))
     except Exception as e:
         print('An Error occurred:\n' + str(e))

@@ -35,11 +35,17 @@
     <Compile Include="controller\doorautomater.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="controller\settings.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="controller\suncalculator.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="controller\__init__.py" />
     <Compile Include="routes\index.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="routes\settings.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="routes\__init__.py">
@@ -52,6 +58,7 @@
     <Folder Include="routes\" />
     <Folder Include="C:\Users\marti\Documents\Visual Studio 2017\Projects\ChickenDoorControl\ChickenDoorControl\views\" />
     <Folder Include="static\vendor\" />
+    <Folder Include="views\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Install.sh" />
