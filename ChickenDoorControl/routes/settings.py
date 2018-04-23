@@ -8,7 +8,6 @@ class Settings(object):
     def GET(self):
         return json.dumps(settings.configuration)
 
-
     def GET(self,section=None,setting=None):
         if section != '':
             if setting == None:
