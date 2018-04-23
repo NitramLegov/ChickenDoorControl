@@ -32,6 +32,9 @@
     <Compile Include="controller\door.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="controller\doorautomater.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="controller\suncalculator.py">
       <SubType>Code</SubType>
     </Compile>
