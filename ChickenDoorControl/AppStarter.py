@@ -23,8 +23,12 @@ def cleanup():
     print ('cleaning up before exit..')
     
     try:
+        #cleaning the GPIO pins
         import RPi.GPIO as GPIO
         GPIO.cleanup()
+        #Stopping the hardware watchdog
+        with open('/dev/watchdog', 'wb') as watchdog_file:
+            watchdog_file.write('V')
     except:
         print('nothing')
 
