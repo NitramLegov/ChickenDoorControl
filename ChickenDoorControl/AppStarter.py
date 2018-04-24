@@ -20,9 +20,11 @@ port_num = settings.configuration.getint('Server','port')
 
 def cleanup():
     print ('cleaning up before exit..')
+    
     try:
         import RPi.GPIO as GPIO
         GPIO.cleanup()
+        exit()
     except:
         print('nothing')
 
