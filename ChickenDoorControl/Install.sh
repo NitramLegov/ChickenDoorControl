@@ -55,6 +55,7 @@ sudo pip install web.py pyephem
 sudo raspi-config nonint do_i2c 0
 sudo raspi-config nonint do_boot_behaviour B1
 toggle_setting_on_off watchdog on $CONFIG
+enter_full_setting 'dtoverlay=i2c-rtc,ds3231' $CONFIG
 sudo echo 'KERNEL=="watchdog", MODE="0666"' > /etc/udev/rules.d/60-watchdog.rules
 
 echo '----------------'
