@@ -38,10 +38,14 @@ class DoorAutomater(object):
         obs.date = datetime.datetime.utcnow()
         if obs.next_rising(ephem.Sun()) < obs.next_setting(ephem.Sun()):
             #it is night, close door
+            DoorAutomater.next_event = 'Sunrise'
+            DoorAutomater.time_of_next_event = ephem.localtime(obs.next_rising(ephem.Sun()))
             print 'Initializing... It is night, so the door needs to be closed.'
             controller.door.down()
         else:
             #it is day, open door
+            DoorAutomater.next_event = 'Sunset'
+            DoorAutomater.time_of_next_event = ephem.localtime(obs.next_setting(ephem.Sun()))
             print 'Initializing... It is day, so the door needs to be open.'
             controller.door.up()
         while (True):
