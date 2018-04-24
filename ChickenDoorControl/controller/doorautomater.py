@@ -9,12 +9,12 @@ try:
 except:
     running_on_pi = False
 
-
-
 class DoorAutomater(object):
 
     """description of class"""
-    thread = None  # background thread that reads the distance from the sensor
+    thread = None  # background thread
+    next_event = None
+    time_of_next_event = None
     obs = ephem.Observer()
     obs.lat = '49.10318'
     obs.long = '8.47589'
@@ -23,10 +23,15 @@ class DoorAutomater(object):
             # start background thread
             DoorAutomater.thread = threading.Thread(target=self._thread)
             DoorAutomater.thread.start()
+            # wait until the next event got calculated
+            while self.next_event is None or self.time_of_next_event is None:
+                time.sleep(0)
 
-    def start(self):
+    def get_next_event(self):
         self.initialize()
-        return 'started'
+        return 'Next Event: ' + DoorAutomater.next_event + ' at: ' + str(DoorAutomater.time_of_next_event)
+
+
     @classmethod
     def _thread(cls):
         obs = DoorAutomater.obs
@@ -43,24 +48,26 @@ class DoorAutomater(object):
             obs.date = datetime.datetime.utcnow()
             #Testing line: 3 Seconds until Sunrise
             #obs.date = ephem.Date('2018/04/23 04:19:22.00')
-            #Testing line: 3 Seconds until Sunset
-            #obs.date = ephem.Date('2018/04/23 18:30:22.00')
+            #Testing line: 10 Seconds until Sunset
+            #obs.date = ephem.Date('2018/04/23 18:30:15.00')
             if obs.next_rising(ephem.Sun()) < obs.next_setting(ephem.Sun()):
                 #it is night, next event is the sunrise
-                next_event = 1
+                DoorAutomater.next_event = 'Sunrise'
+                DoorAutomater.time_of_next_event = ephem.localtime(obs.next_rising(ephem.Sun()))
                 time_to_sleep = (obs.next_rising(ephem.Sun()).datetime() - obs.date.datetime()).total_seconds()
             else:
                 #it is day, next event is the sunset
-                next_event = 0
+                DoorAutomater.next_event = 'Sunset'
+                DoorAutomater.time_of_next_event = ephem.localtime(obs.next_setting(ephem.Sun()))
                 time_to_sleep = ((obs.next_setting(ephem.Sun()).datetime() - obs.date.datetime())).total_seconds()
 
-            if next_event == 1:
+            if DoorAutomater.next_event  == 'Sunrise':
                 print "Currently it is nighttime. The door would go up at: " + str(ephem.localtime(obs.next_rising(ephem.Sun())))
-                print "This means " + str(((obs.next_rising(ephem.Sun()).datetime() - obs.date.datetime())).total_seconds()) + " seconds"
+                print "This means in " + str(((obs.next_rising(ephem.Sun()).datetime() - obs.date.datetime())).total_seconds()) + " seconds"
                 time.sleep(time_to_sleep)
                 controller.door.up()
             else:
                 print "Currently it is daytime. The door would go down at: " + str(ephem.localtime(obs.next_setting(ephem.Sun())))
-                print "This means " + str(((obs.next_setting(ephem.Sun()).datetime() - obs.date.datetime())).total_seconds()) + " seconds"
+                print "This means in " + str(((obs.next_setting(ephem.Sun()).datetime() - obs.date.datetime())).total_seconds()) + " seconds"
                 time.sleep(time_to_sleep)
                 controller.door.down()

@@ -4,6 +4,7 @@ from routes.index import Index
 from routes.settings import Settings
 import time
 from controller.doorautomater import DoorAutomater
+from controller.watchdog import WatchDog
 import controller.settings as settings
 
 PossibleUrls = (
@@ -29,7 +30,8 @@ if __name__ == "__main__":
     Server = web.application(PossibleUrls,globals())
 
     try:
-        print DoorAutomater().start()
+        print DoorAutomater().get_next_event()
+        WatchDog().start()
         web.httpserver.runsimple(Server.wsgifunc(), ("0.0.0.0", port_num))
     except Exception as e:
         print('An Error occurred:\n' + str(e))

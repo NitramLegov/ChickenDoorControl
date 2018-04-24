@@ -41,6 +41,9 @@
     <Compile Include="controller\suncalculator.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="controller\watchdog.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="controller\__init__.py" />
     <Compile Include="routes\index.py">
       <SubType>Code</SubType>
