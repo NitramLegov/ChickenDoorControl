@@ -14,7 +14,7 @@ if running_on_pi:
     GPIO.setmode(GPIO.BCM)
     #We assume that turning the door up or down only needs the change of 1 pin:
     UP_PIN = settings.configuration.getint('Doorcontrol','UP_PIN')
-    DOWN_PIN = settings.configuration.getint('Doorcontrol','UP_PIN')
+    DOWN_PIN = settings.configuration.getint('Doorcontrol','DOWN_PIN')
     time_needed = settings.configuration.getint('Doorcontrol','TIME')
     GPIO.setup(UP_PIN, GPIO.OUT, initial=GPIO.HIGH)
     GPIO.setup(DOWN_PIN, GPIO.OUT, initial=GPIO.HIGH)

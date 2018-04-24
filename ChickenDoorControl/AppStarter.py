@@ -32,8 +32,8 @@ if __name__ == "__main__":
     Server = web.application(PossibleUrls,globals())
 
     try:
-        print DoorAutomater().get_next_event()
         WatchDog().start()
+        #print DoorAutomater().get_next_event()
         web.httpserver.runsimple(Server.wsgifunc(), ("0.0.0.0", port_num))
     except Exception as e:
         print('An Error occurred:\n' + str(e))

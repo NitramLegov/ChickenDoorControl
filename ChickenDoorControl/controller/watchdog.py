@@ -32,6 +32,8 @@ class WatchDog(object):
     @classmethod
     def _thread(cls):
         while (True):
+            if DoorAutomater.thread is None:
+                DoorAutomater().get_next_event()
             WatchDog.status = DoorAutomater.thread.is_alive()
             #print str(WatchDog.status)
             if WatchDog.status and running_on_pi:
