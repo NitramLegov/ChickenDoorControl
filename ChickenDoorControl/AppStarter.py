@@ -25,7 +25,6 @@ def cleanup():
     try:
         import RPi.GPIO as GPIO
         GPIO.cleanup()
-        sys.exit()
     except:
         print('nothing')
 

@@ -19,6 +19,7 @@ class WatchDog(object):
         if WatchDog.thread is None:
             # start background thread
             WatchDog.thread = threading.Thread(target=self._thread)
+            WatchDog.thread.daemon = True
             WatchDog.thread.start()
             # wait until the watchdog got initialized
             while self.status is None:

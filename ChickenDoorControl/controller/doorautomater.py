@@ -22,6 +22,7 @@ class DoorAutomater(object):
         if DoorAutomater.thread is None:
             # start background thread
             DoorAutomater.thread = threading.Thread(target=self._thread)
+            DoorAutomater.thread.daemon = True
             DoorAutomater.thread.start()
             # wait until the next event got calculated
             while self.next_event is None or self.time_of_next_event is None:
