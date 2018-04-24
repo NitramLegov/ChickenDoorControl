@@ -6,6 +6,7 @@ import time
 from controller.doorautomater import DoorAutomater
 from controller.watchdog import WatchDog
 import controller.settings as settings
+import sys
 
 PossibleUrls = (
                 '/favicon.ico', 'Favicon',
@@ -24,7 +25,7 @@ def cleanup():
     try:
         import RPi.GPIO as GPIO
         GPIO.cleanup()
-        exit()
+        sys.exit()
     except:
         print('nothing')
 
