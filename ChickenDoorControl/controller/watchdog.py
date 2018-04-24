@@ -34,7 +34,7 @@ class WatchDog(object):
         while (True):
             WatchDog.status = DoorAutomater.thread.is_alive()
             #print str(WatchDog.status)
-            if status and running_on_pi:
+            if WatchDog.status and running_on_pi:
                 with open('/dev/watchdog', 'wb') as watchdog_file:
                     watchdog_file.write('1')
             time.sleep(5)
