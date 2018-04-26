@@ -77,3 +77,11 @@ sudo echo "WantedBy=multi-user.target" >> $SERVICE_FILE
 sudo systemctl daemon-reload
 sudo systemctl start ChickenDoor.service
 sudo systemctl enable ChickenDoor.service
+
+
+echo 'In order to enable the RTC hardware, please do the following:'
+echo 'edit the following file: /lib/udev/rwclock-set '
+echo 'comment out the following lines:'
+echo 'if [ -e /run/systemd/system ] ; then'
+echo '    exit 0'
+echo 'fi'
