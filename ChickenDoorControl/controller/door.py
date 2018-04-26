@@ -20,6 +20,7 @@ if running_on_pi:
     GPIO.setup(DOWN_PIN, GPIO.OUT, initial=GPIO.HIGH)
 def up():
     if running_on_pi:
+        print 'Opening door at: ' + str(datetime.datetime.now())
         GPIO.output(UP_PIN,GPIO.LOW)
         time.sleep(time_needed)
         GPIO.output(UP_PIN,GPIO.HIGH)
@@ -27,6 +28,7 @@ def up():
         print 'not running on a pi. Door would have gone up at: ' + str(datetime.datetime.now())
 def down():
     if running_on_pi:
+        print 'Closing door at: ' + str(datetime.datetime.now())
         GPIO.output(DOWN_PIN,GPIO.LOW)
         time.sleep(time_needed)
         GPIO.output(DOWN_PIN,GPIO.HIGH)

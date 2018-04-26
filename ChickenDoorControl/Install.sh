@@ -65,7 +65,7 @@ SERVICE_FILE="/etc/systemd/system/ChickenDoor.service"
 sudo echo "[Unit]" > $SERVICE_FILE
 sudo echo "Description=Chicken Door Control" >> $SERVICE_FILE
 sudo echo "[Service]" >> $SERVICE_FILE
-sudo echo "ExecStart=/usr/bin/python ${DIR}/AppStarter.py" >> $SERVICE_FILE
+sudo echo "ExecStart=/usr/bin/python -u ${DIR}/AppStarter.py" >> $SERVICE_FILE
 sudo echo "WorkingDirectory=${DIR}" >> $SERVICE_FILE
 sudo echo "StandardOutput=inherit" >> $SERVICE_FILE
 sudo echo "StandardError=inherit" >> $SERVICE_FILE
