@@ -13,7 +13,7 @@ Simply download the repository and run:
 cd ChickenDoorControl/ChickenDoorControl/
 sudo ./Install.sh
 ```
-On a fresh Raspbian installation, you can also just run:
+If you want everything in one command, just pate the following into the command line:
 ```bash
 sudo apt-get update && sudo apt-get install git -y && git clone https://github.com/NitramLegov/ChickenDoorControl.git && cd ChickenDoorControl/ChickenDoorControl && sudo ./Install.sh
 ```
