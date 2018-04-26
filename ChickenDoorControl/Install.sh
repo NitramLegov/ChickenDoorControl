@@ -78,7 +78,6 @@ sudo systemctl daemon-reload
 sudo systemctl start ChickenDoor.service
 sudo systemctl enable ChickenDoor.service
 
-
 echo 'In order to enable the RTC hardware, please do the following:'
 echo 'edit the following file: /lib/udev/hwclock-set '
 echo 'comment out the following lines:'
