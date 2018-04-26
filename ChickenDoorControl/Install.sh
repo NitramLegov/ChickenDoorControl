@@ -46,7 +46,7 @@ CONFIG=/boot/config.txt
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 echo 'Welcome to the Chicken door control setup'
 echo 'Please note that the initial setup requires an active internet connection.'
-#echo 'First, we will update the apt-get database'
+echo 'First, we will update the apt-get database'
 sudo apt-get -qq update
 sudo apt-get -qq -y install build-essential python-dev python-pip
 echo '----------------'
