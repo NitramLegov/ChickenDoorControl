@@ -17,7 +17,7 @@ sudo ./Install.sh
 Please put special notice on the following manual task:<br>
 In order to enable the RTC hardware, please do the following:<br>
 1. reboot <br>
-2. Edit the following file: /lib/udev/rwclock-set <br>
+2. Edit the following file: /lib/udev/hwclock-set <br>
 comment out the following lines:<br>
 ```bash
 if [ -e /run/systemd/system ] ; then
