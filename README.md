@@ -30,8 +30,11 @@ fi
       In here, you can edit the pins for opening and closing the door (BCM Layout)<br>
       you can also edit the time needed for opening & closing (in seconds)<br>
       the default config is:<br>
+      ```
+      [Doorcontrol]<br>
       up_pin = 27<br>
       down_pin = 17<br>
       time = 30<br>
+      ```
 2. The sainsmart module should be powered with 5V<br>
 3. Please note the system is designed to run headlesss. It uses the hardware watchdog to automatically reboot if the pi gets hung up.
